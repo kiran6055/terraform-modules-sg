@@ -1,6 +1,6 @@
 resource "aws_security_group" "main" {
     name = var.security_group_name
-    description = var.security_group_description
+    description = var.security_group_DES
     vpc_id      = var.vpc_id
 
     egress { # traffic going out of RDS
