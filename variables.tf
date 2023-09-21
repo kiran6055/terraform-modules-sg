@@ -19,15 +19,23 @@ variable "vpc_id" {
   type = string
 }
 
-variable "ingress_cidr" {
-  type = list(map(string))
-  default = [
-    {
-      from_port    = "80"
-      to_port      = "80"
-      cidr_block   = "0.0.0.0/0"
-      description  = "we are enabling access to 80 portnumber"
+# this is how we give ingress seprately if we want
 
-    }
-  ]
-}
+# variable "ingress_cidr" {
+#   type = list(map(string))
+#   default = [}
+#     {
+#       from_port    = "80"
+#       to_port      = "80"
+#       cidr_block   = "0.0.0.0/0"
+#       description  = "we are enabling access to 80 portnumber"
+
+#     }
+#   ]
+# }
+
+
+ variable "ingress_cidr" {
+   type = list(map(string))
+   default = []
+ }

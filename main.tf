@@ -1,4 +1,4 @@
-resource "aws_security_group" "timing" {
+resource "aws_security_group" "main" {
   name = var.security_group_name
   description = var.security_group_DES
   vpc_id      = var.vpc_id
@@ -21,10 +21,11 @@ resource "aws_security_group" "timing" {
 # this resource will add ingress rule to the securoty group
 resource "aws_security_group_rule" "ingress_with_cidr" {
   count             = lenght(var.ingress_cidr)
-  type              = "ingess"
+  type              = "ingress"
   from_port         = lookup(var.ingress_cidr[count.index], "from_port")
   to_port           = lookup(var.ingress_cidr[count.index], "to_port")
   protocol          = "6" # this is for custom TCP
   cidr_blocks       = [lookup(var.ingress_cidr[count.index], "cidr_blocks")]
+  description       = lookup(var.ingress_cidr[count.index], "description")
   security_group_id = aws_security_group.timing.id
 }
